@@ -1,7 +1,21 @@
 module.exports = {
-  arrowParens: 'avoid',
-  bracketSameLine: true,
-  bracketSpacing: false,
+  useTabs: false,
+  tabSize: 2,
   singleQuote: true,
-  trailingComma: 'all',
+  printWidth: 120,
+  endOfLine: 'lf',
+  trailingComma: 'none',
+  bracketSameLine: false,
+  overrides: [
+    {
+      files: '*.md',
+      options: {
+        printWidth: 70,
+        useTabs: false,
+        trailingComma: 'none',
+        arrowParens: 'avoid',
+        proseWrap: 'never',
+      },
+    },
+  ],
 };
