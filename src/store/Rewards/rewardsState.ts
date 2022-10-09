@@ -43,8 +43,3 @@ export const rewardsState = atom<Reward[]>({
     }
   ]
 });
-
-export const rewardsCreateDisabledState = atom<boolean>({
-  key: 'RewardsCreateDisabled',
-  default: true
-});
