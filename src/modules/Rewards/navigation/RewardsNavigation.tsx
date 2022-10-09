@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from "react";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Screen } from '../../../constants/screenConstants';
 import { RewardsFeedScreen } from '../screens/RewardsFeedScreen';
@@ -27,8 +28,14 @@ const RewardsTopTab = () => (
 );
 
 const RewardsBottomTabs = createBottomTabNavigator();
-export const RewardsNavigation = () => (
-  <RewardsBottomTabs.Navigator screenOptions={rewardsNavigatorScreenOptions} tabBar={RewardsBottomBarContainer}>
-    <RewardsBottomTabs.Screen name={Screen.REWARDS_TABS} component={RewardsTopTab} />
-  </RewardsBottomTabs.Navigator>
-);
+export const RewardsNavigation = () => {
+  const { top } = useSafeAreaInsets();
+
+  const screenOptions = useMemo(() => rewardsNavigatorScreenOptions(top), []);
+
+  return (
+    <RewardsBottomTabs.Navigator screenOptions={screenOptions} tabBar={RewardsBottomBarContainer}>
+      <RewardsBottomTabs.Screen name={Screen.REWARDS_TABS} component={RewardsTopTab} />
+    </RewardsBottomTabs.Navigator>
+  );
+}
