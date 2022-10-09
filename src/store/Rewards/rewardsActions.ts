@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { USERS } from '../../constants/usersContstants';
-import { rewardsCreateDisabledState, rewardsState } from './rewardsState';
+import { rewardsState } from './rewardsState';
 import { currentUserState } from '../Session/sessionSelectors';
 
 type Props = {
@@ -22,8 +22,4 @@ export const useCreateRewardAction = () => {
 
     setRewards((prevState) => [reward, ...prevState]);
   }, []);
-};
-
-export const useSetCreateRewardDisabledAction = () => {
-  return useSetRecoilState(rewardsCreateDisabledState);
 };
