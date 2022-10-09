@@ -1,7 +1,9 @@
+import { Employee } from './employeesTypes';
+
 export type Reward = {
   amount: number;
   timestamp: number;
-  receiver: string;
-  author: string;
+  receiver: Employee;
+  sender: Employee;
   message: string;
 };

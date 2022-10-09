@@ -11,11 +11,11 @@ export const AppNavigation = () => (
     <AppStack.Navigator>
       {/* Main */}
       <AppStack.Group>
-        <AppStack.Screen name={Screen.REWARDS} component={RewardsNavigation} />
+        <AppStack.Screen options={{ headerShown: false }} name={Screen.REWARDS} component={RewardsNavigation} />
       </AppStack.Group>
 
       {/* Lazy Modals */}
-      <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+      <AppStack.Group screenOptions={{ presentation: 'modal', headerTitle: 'New reward', contentStyle: {backgroundColor: '#fff'} }}>
         <AppStack.Screen
           name={Screen.MODAL_REWARDS_CREATE}
           getComponent={() => require('./modules/Rewards/screens/RewardsCreateScreen').default}

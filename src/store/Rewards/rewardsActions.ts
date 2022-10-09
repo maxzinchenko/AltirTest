@@ -1,17 +1,29 @@
 import { useCallback } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { Reward } from '../../types/rewardsTypes';
-import { rewardsState } from './rewardsState';
+import { USERS } from '../../constants/usersContstants';
+import { rewardsCreateDisabledState, rewardsState } from './rewardsState';
 import { currentUserState } from '../Session/sessionSelectors';
 
-type Props = Pick<Reward, 'message' | 'receiver' | 'amount'>;
+type Props = {
+  message: string;
+  amount: string;
+  receiver: string;
+};
 
 export const useCreateRewardAction = () => {
-  const author = useRecoilValue(currentUserState);
+  const sender = useRecoilValue(currentUserState);
   const setRewards = useSetRecoilState(rewardsState);
 
   return useCallback((payload: Props) => {
-    setRewards((prevState) => [{ ...payload, timestamp: Date.now(), author }, ...prevState]);
+    const receiver = USERS.find(({ name }) => name === payload.receiver) || { name: payload.receiver };
+    console.log({ receiver });
+    const reward = { ...payload, receiver: receiver, amount: Number(payload.amount), timestamp: Date.now(), sender };
+
+    setRewards((prevState) => [reward, ...prevState]);
   }, []);
+};
+
+export const useSetCreateRewardDisabledAction = () => {
+  return useSetRecoilState(rewardsCreateDisabledState);
 };

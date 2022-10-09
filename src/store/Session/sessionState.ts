@@ -1,12 +1,13 @@
 import { atom } from 'recoil';
 
-import { USER } from '../../constants/sessionContstants';
+import { USERS } from '../../constants/usersContstants';
+import { Employee } from '../../types/employeesTypes';
 
 type SessionState = {
-  user: string;
+  user: Employee;
 };
 
 export const sessionState = atom<SessionState>({
   key: 'Session',
-  default: { user: USER }
+  default: { user: USERS[0] }
 });
