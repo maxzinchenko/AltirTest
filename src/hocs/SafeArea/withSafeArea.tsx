@@ -5,7 +5,7 @@ export const withSafeArea =
   <P extends Record<string, unknown>>(Component: FC<P>) =>
   (props: P) => {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
         <Component {...props} />
       </SafeAreaView>
     );
